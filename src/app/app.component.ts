@@ -1,6 +1,7 @@
-import { Component, VERSION } from '@angular/core';
+import { Component, VERSION, ViewChild, ElementRef } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { Observable, Observer } from "rxjs";
+import {  } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,9 @@ import { Observable, Observer } from "rxjs";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  @ViewChild('myInput')
+  myInputVariable!: ElementRef;
 
   title = 'imageCropperTool';
   name = "Angular " + VERSION.major;
@@ -90,6 +94,9 @@ export class AppComponent {
 
   //clear image in card
   clearImage() {
+    console.log(this.myInputVariable.nativeElement.files);
+    this.myInputVariable.nativeElement.value = "";
+    console.log(this.myInputVariable.nativeElement.files);
     this.imgChangeEvt = "";
     this.cropImgPreview = "";
     this.titleShow = false;
